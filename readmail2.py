@@ -3,8 +3,8 @@ import email
 import imaplib
 from bs4 import BeautifulSoup
 import re
-user = 'listerd37@gmail.com'
-password = 'Reddwarf'
+user = 'xxxxxxx@gmail.com'
+password = 'xxxxxx'
 server = IMAPClient('imap.gmail.com', use_uid=True)
 server.login(user,password)
 select_info = server.select_folder('INBOX')
