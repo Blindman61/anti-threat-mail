@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>E-Haz Mail</title>
+    <!-- Path to Framework7 Library CSS-->
+    <link rel="stylesheet" href="./static/framework7.ios.min.css">
+    <!-- Path to your custom app styles-->
+    <link rel="stylesheet" href="./static/my-app.css">
+    <script type="text/javascript"
+        src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+  </head>
+  <body>
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-left panel-cover">
+      <!-- Left view-->
+      <div class="view view-left navbar-through">
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="left"></div>
+            <div class="center sliding">E-Haz</div>
+            <div class="right"></div>
+          </div>
+        </div>
+        <div class="pages">
+          <div data-page="index-left" class="page">
+            <div class="page-content">
+              <div class="content-block-title">Folders</div>
+              <div class="list-block">
+                <ul>
+                  <li><a href="inbox.html" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title">Inbox</div>
+                        </div>
+                      </div></a></li>
+                  <li><a href="deleted.html" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title">Deleted</div>
+                        </div>
+                      </div></a></li>
+                  <li><a href="spam.html" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title">Spam</div>
+                        </div>
+                      </div></a></li>
+                </ul>
+              </div>
+              <div class="content-block-title">Help and More Information</div>
+              <div class="list-block">
+                <ul>
+                  <li><a href="about.html" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title">About</div>
+                        </div>
+                      </div></a></li>
+                  <li><a href="Help.html" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title">Help</div>
+                        </div>
+                      </div></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Right panel with cover effect-->
+    <div class="panel panel-right panel-reveal">
+      <div class="content-block">
+        <p>Right panel content goes here</p>
+      </div>
+    </div>
+    <!-- Views-->
+    <div class="views">
+      <!-- Right view, it is main view-->
+      <div class="view view-main navbar-through">
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="center sliding">Inbox</div>
+            <div class="right"><a href="#" data-panel="left" class="link open-panel icon-only"><i class="icon icon-bars"></i></a></div>
+          </div>
+        </div>
+        <!-- Pages-->
+        <div class="pages">
+          <!-- Page, data-page contains page name-->
+          <div data-page="index-1" class="page">
+            <!-- Scrollable page content-->
+            <div class="page-content">
+              <div class="content-block-title">Tap an email to show analysis</div>
+              <div class="content-block">
+                <div class="content-block-inner">
+                  <div class="list accordion-list">
+                    <ul>
+                 <script>
+                    console.log("Are we here?")
+                    $.ajax({
+                        url: "m",
+                        success: function(data) {
+                            data = JSON.parse(data);
+                            
+                            for (i = 0; i < data.mail.length; i = i + 1) {
+                                html = ''
+                                html += '<li class="accordion-item">'
+                                html += '<a href="" class="item-link item-content">'
+                                html += '<div class="item-inner">'
+                                html += '<div class="item-title">'+data.mail[i]+'</div>'
+                                html += '</div>'
+                                html += '</a>'
+                                html += '<div class="accordion-item-content">'+data.body[i]+'</div>'
+                                html += '</li>'
+                                $("p").append(html)
+                                console.log(data.body[i])
+                            }
+                        }
+                    })
+                    console.log("And here?")
+                </script>
+                    <p> </p>
+                      </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="./static/framework7.min.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="./static/my-app.js"></script>
+  </body>
+</html>
