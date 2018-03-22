@@ -9,10 +9,8 @@ import datetime
 from bs4 import BeautifulSoup
 import re
 from OpenSSL import SSL
-EMAIL_ACCOUNT = "listerd37@gmail.com"
-PASSWD = "Reddwarf"
-USR1 = "David"
-USR2 = "Lister"
+EMAIL_ACCOUNT = "xxxxxxxxx@gmail.com"
+PASSWD = "xxxxxxxx"
 M = imaplib.IMAP4_SSL('imap.gmail.com',993)
 def process_mailbox():
     rv, data = M.search(None, "ALL")
